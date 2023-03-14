@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'bookings/index'
+  get 'bookings/new'
+  get 'bookings/create'
+  get 'bookings/update'
   devise_for :users
   resources :bikes do
     resources :bookings, only: [:new, :create]
