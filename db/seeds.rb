@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 Bike.destroy_all
-User.destroy_allex
+User.destroy_all
 
 10.times do
   user = User.new(
