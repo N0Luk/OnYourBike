@@ -1,0 +1,34 @@
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">Bikes</h3>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Bike Type</th>
+          <th>Price</th>
+          <th>Location</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+          <th>User ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bikes.each do |bike| %>
+          <tr>
+            <td><%= link_to bike.name, bike_path(bike), class:"text-decoration-none" %></td>
+            <td><%= bike.bike_type %></td>
+            <td><%= bike.price %></td>
+            <td><%= bike.location %></td>
+            <td><%= bike.created_at %></td>
+            <td><%= bike.updated_at %></td>
+            <td><%= bike.user_id %></td>
+          </tr>
+        <% end %>
+        <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
+      </tbody>
+    </table>
+  </div>
+</div>
