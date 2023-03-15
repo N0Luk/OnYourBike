@@ -8,7 +8,7 @@
           <%= f.input :bike_type %>
           <%= f.input :price, as: :float %>
           <%= f.input :location %>
-          <%= f.input :user_id %>
+          <%= f.input :photo, as: :file %>
 
           <%= f.submit class: 'btn btn-primary me-2s' %>
           <%= link_to "Return to Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>

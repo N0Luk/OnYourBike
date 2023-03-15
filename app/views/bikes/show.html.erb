@@ -3,25 +3,31 @@
     <h3 class="mb-0"><%= @bike.name %></h3>
     <div>
       <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
-      <%= link_to "Delete", @bike, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-      <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary me-2" %>
-    </div>
-      <div class="row">
-        <div class="col-md-6">
-        <strong>Bike Type:</strong> <%= @bike.bike_type %>
-      </div>
-        <div class="mb-6">
-        <strong>Price:</strong> <%= number_to_currency(@bike.price) %>
-        </div>
-        <div class="mb-6">
-        <strong>Location:</strong> <%= @bike.location %>
-        </div>
-      <div class="mb-6">
-        <strong>User:</strong> <%= @bike.user.first_name %>
-      </div>
+      <%= link_to "Delete", @bike, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+      <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary" %>
     </div>
   </div>
-</div>
-<div class="mb-6">
-<%= link_to "Return", bikes_path(@bike), class: "btn btn-primary me-2" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+    </div>
+    <div class="col-md-6">
+      <dl class="row">
+        <dt class="col-sm-4"><strong>Bike Type:</strong></dt>
+        <dd class="col-sm-8"><%= @bike.bike_type %></dd>
+
+        <dt class="col-sm-4"><strong>Price:</strong></dt>
+        <dd class="col-sm-8"><%= number_to_currency(@bike.price) %></dd>
+
+        <dt class="col-sm-4"><strong>Location:</strong></dt>
+        <dd class="col-sm-8"><%= @bike.location %></dd>
+
+        <dt class="col-sm-4"><strong>User:</strong></dt>
+        <dd class="col-sm-8"><%= @bike.user.first_name %></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="mt-4">
+    <%= link_to "Return", bikes_path(@bike), class: "btn btn-primary" %>
+  </div>
 </div>
