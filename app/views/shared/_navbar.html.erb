@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to home_path(@bike), class: "navbar-brand" do %>
+    <%= link_to home_path, class: "navbar-brand" do %>
       <%= image_tag "https://media.istockphoto.com/id/1304222161/vector/infinity-bicycle-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=Pb06hOLKIgqkkBvApBCV4JkIHHiZH6zTlzcNCgo9mrk=" %>
     <% end %>
 
@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", home_path(@bike), class: "nav-link" %>
+            <%= link_to "Home", home_path, class: "nav-link" %>
           </li>
           <%# <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
