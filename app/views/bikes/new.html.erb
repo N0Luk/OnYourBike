@@ -10,7 +10,8 @@
           <%= f.input :location %>
           <%= f.input :user_id %>
 
-          <%= f.submit class: 'btn btn-flat' %>
+          <%= f.submit class: 'btn btn-primary me-2s' %>
+          <%= link_to "Return to Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>
         <% end %>
       </div>
     </div>

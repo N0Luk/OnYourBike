@@ -23,7 +23,7 @@ end
 10.times do
   bike = Bike.new(
     bike_type: ['E-bike', 'Mountain Bike', 'Road Bike', 'Childrens Bike', 'Unicycle'].sample,
-    name: Faker::Name.name,
+    name: Faker::Movies::StarWars.vehicle,
     price: Faker::Commerce.price(range: 5..150.0, as_string: false),
     location: Faker::Address.city,
     user_id: User.pluck(:id).sample

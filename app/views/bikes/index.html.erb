@@ -8,9 +8,9 @@
         <tr>
           <th>Name</th>
           <th>Bike Type</th>
-          <th>Price</th>
+          <th>$ Price</th>
           <th>Location</th>
-          <th>User ID</th>
+          <th>Owner</th>
         </tr>
       </thead>
       <tbody>
@@ -18,9 +18,9 @@
           <tr>
             <td><%= link_to bike.name, bike_path(bike), class:"text-decoration-none" %></td>
             <td><%= bike.bike_type %></td>
-            <td><%= bike.price %></td>
+            <td><%= bike.price  %></td>
             <td><%= bike.location %></td>
-            <td><%= bike.user_id %></td>
+            <td><%= bike.user.last_name %></td>
           </tr>
         <% end %>
         <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>

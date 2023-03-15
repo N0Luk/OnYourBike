@@ -1,0 +1,49 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.jumbotron {
+  background-color: $jumbotron-bg;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+}
+
+.jumbotron h1 {
+  font-size: 3.5rem;
+  color: $jumbotron-title-color;
+}
+
+.jumbotron h2 {
+  font-size: 2rem;
+  color: $jumbotron-subtitle-color;
+  margin-bottom: 1.5rem;
+}
+
+.jumbotron p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: $jumbotron-text-color;
+  margin-bottom: 1rem;
+}
+
+.download-btn,
+.add-bike-btn,
+.see-bikes-btn {
+  background-color: $btn-primary-color;
+  border: none;
+  border-radius: 0.25rem;
+  color: $btn-text-color;
+  font-size: 1.125rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.download-btn:hover,
+.add-bike-btn:hover,
+.see-bikes-btn:hover {
+  background-color: $btn-primary-hover-color;
+  text-decoration: none;
+  color: $btn-text-color;
+}

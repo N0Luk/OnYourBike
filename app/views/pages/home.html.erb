@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="jumbotron text-center">
+  <h1>OnYourBike</h1>
+  <h2>Your ride, your way.</h2>
+  <p>Welcome to OnYourBike, the ultimate bike rental app for adventurers and explorers like you. Our mission is to help you discover the world on two wheels and experience the freedom and flexibility of biking like a local.</p>
+  <p>With OnYourBike, you can rent a bike from locals and bike rental shops in your city, and explore your surroundings at your own pace. Whether you want to take a leisurely ride along the beach, explore hidden alleys and neighborhoods, or tackle a challenging trail, you can find the perfect bike and route for your adventure.</p>
+  <p>No matter where you are, you can easily book your ride, unlock your bike, and hit the road in minutes. And with our user-friendly app and 24/7 customer support, you can rest assured that your ride will be smooth and hassle-free.</p>
+  <%= link_to "Download OnYourBike", "#", class: "btn btn-primary me-2" %>
+  <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
+  <%= link_to "See All Our Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>
+
+
+</div>
