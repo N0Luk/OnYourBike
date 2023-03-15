@@ -3,7 +3,7 @@
     <h3 class="mb-0"><%= @bike.name %></h3>
     <div>
       <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
-      <%= link_to "Delete", @bike, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+      <%= link_to "Delete", bike_path(@bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
       <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary" %>
     </div>
   </div>
@@ -28,6 +28,6 @@
     </div>
   </div>
   <div class="mt-4">
-    <%= link_to "Return", bikes_path(@bike), class: "btn btn-primary" %>
+    <%= link_to "Return", bikes_path, class: "btn btn-primary" %>
   </div>
 </div>
