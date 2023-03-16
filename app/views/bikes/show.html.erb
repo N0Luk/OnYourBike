@@ -9,7 +9,11 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+      <% if @bike.photo.attached? %>
+        <%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+      <% else %>
+        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" alt="default bike picture" class= "img-thumbnail">
+      <% end %>
     </div>
     <div class="col-md-6">
       <dl class="row">
