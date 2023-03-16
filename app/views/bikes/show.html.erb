@@ -1,58 +1,80 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<style>
+  .card {
+    margin-bottom: 2rem;
+  }
+</style>
+
 <div class="container py-5">
-  <div class="d-flex align-items-center justify-content-between mb-3" >
-    <h3 class="mb-0"><%= @bike.name %></h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h3 class="mb-0 card-title"><%= @bike.name %></h3>
 
-    <div>
-      <% if current_user == @bike.user %>
-      <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
-      <%= link_to "Delete", bike_path(@bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
-      <% end %>
-      <% if @booking && @booking.pending? && @booking.user == current_user %>
-        <%= link_to "Cancel Request", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
-      <% end %>
-      <% if @booking && @booking.pending? && @booking.bike.user == current_user %>
-        <%= link_to "Accept", accept_booking_path(@booking), method: :put, class: "btn btn-success me-2" %>
-        <%= link_to "Reject", reject_booking_path(@booking), method: :put, class: "btn btn-danger me-2" %>
-      <% end %>
-      <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary" %>
-    </div>
+        <div>
+          <% if current_user == @bike.user %>
+          <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
+          <%= link_to "Delete", bike_path(@bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+          <% end %>
+          <% if @booking && @booking.pending? && @booking.user == current_user %>
+            <%= link_to "Cancel Request", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+          <% end %>
+          <% if @booking && @booking.pending? && @booking.bike.user == current_user %>
+            <%= link_to "Accept", accept_booking_path(@booking), method: :put, class: "btn btn-success me-2" %>
+            <%= link_to "Reject", reject_booking_path(@booking), method: :put, class: "btn btn-danger me-2" %>
+          <% end %>
+        </div>
 
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <% if @bike.photo.attached? %>
-        <%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
-      <% else %>
-        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" alt="default bike picture" class= "img-thumbnail">
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <dl class="row">
-        <dt class="col-sm-4"><strong>Bike Type:</strong></dt>
-        <dd class="col-sm-8"><%= @bike.bike_type %></dd>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <% if @bike.photo.attached? %>
+            <%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" alt="default bike picture" class="img-thumbnail">
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-4"><strong>Bike Type:</strong></dt>
+            <dd class="col-sm-8"><%= @bike.bike_type %></dd>
 
-        <dt class="col-sm-4"><strong>Price:</strong></dt>
-        <dd class="col-sm-8"><%= number_to_currency(@bike.price) %></dd>
+            <dt class="col-sm-4"><strong>Price:</strong></dt>
+            <dd class="col-sm-8"><%= number_to_currency(@bike.price) %></dd>
 
-        <dt class="col-sm-4"><strong>Location:</strong></dt>
-        <dd class="col-sm-8"><%= @bike.location %></dd>
+            <dt class="col-sm-4"><strong>Location:</strong></dt>
+            <dd class="col-sm-8"><%= @bike.location %></dd>
 
-        <dt class="col-sm-4"><strong>User:</strong></dt>
-        <dd class="col-sm-8"><%= @bike.user.first_name %></dd>
+          <dt class="col-sm-4"><strong>User:</strong></dt>
+          <dd class="col-sm-8"><%= @bike.user.first_name %></dd>
         </dl>
+      </div>
     </div>
-
-<div>
-<div>
-  <h1>New Booking</h1>
-  <%= simple_form_for [@bike, @reservation], data: { controller: 'flatpickr' } do |f| %>
-    <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
-    <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
-    <%= f.submit 'Book Your Bike' %>
-  <% end %>
+  </div>
 </div>
 
+<!-- Add Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <% if current_user != @bike.user %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h1 class="card-title">New Booking</h1>
+        <%= simple_form_for [@bike, @reservation], data: { controller: 'flatpickr' } do |f| %>
+          <div class="form-group">
+            <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" }, class: 'form-control' } %>
+          </div>
+          <div class="form-group">
+            <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, class: 'form-control' } %>
+          </div>
+          <%= f.submit 'Book Your Bike', class: 'btn btn-primary' %>
+        <% end %>
+  <% end %>
+    </div>
   </div>
+
   <div class="mt-4">
     <%= link_to "Return", bikes_path, class: "btn btn-primary" %>
   </div>
