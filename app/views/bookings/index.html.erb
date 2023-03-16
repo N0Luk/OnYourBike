@@ -13,6 +13,7 @@
   </thead>
   <tbody>
     <% @bookings.each do |booking| %>
+    <% if booking.user == current_user%>
       <tr>
         <td><%= booking.bike.name %></td>
         <td><%= booking.user.first_name %></td>
@@ -24,7 +25,38 @@
           <%= link_to 'Edit', edit_booking_path(booking)%>
         </td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
+</table>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bike</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>User</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+<% if current_user %>
+      <% current_user.bikes.each do |bike| %>
+        <% bike.bookings.each do |booking| %>
+        <tr>
+        <td><%= booking.bike.name %></td>
+        <td><%= booking.user.first_name %></td>
+        <td><%= booking.user.last_name %></td>
+        <td><%= booking.user.email %></td>
+        <td><%= booking.start_date.strftime('%Y-%m-%d') %></td>
+        <td><%= booking.end_date.strftime('%Y-%m-%d') %></td>
+        <td>
+        <% end %>
+      <% end %>
+    <% end %>
+ </tbody>
 </table>
 <br>
