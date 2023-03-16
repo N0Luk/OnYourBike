@@ -37,25 +37,25 @@ class BookingsController < ApplicationController
   end
 
   def accept_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:booking_id])
     @booking.status = "accepted"
     if @booking.save
       flash[:success] = "Booking request accepted!"
     else
       flash[:error] = "Error accepting booking request."
     end
-    redirect_to bike_path(@booking.bike)
+    redirect_to bookings_path
   end
 
   def reject_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:booking_id])
     @booking.status = "rejected"
     if @booking.save
       flash[:success] = "Booking request rejected."
     else
       flash[:error] = "Error rejecting booking request."
     end
-    redirect_to bike_path(@booking.bike)
+    redirect_to bookings_path
   end
 
   private
