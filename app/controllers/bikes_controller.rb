@@ -11,7 +11,10 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
+    @reservation = Booking.new
+    @reservation.bike = @bike
   end
+
 
   def new
     @bike = Bike.new
