@@ -1,30 +1,29 @@
-<div class="container py-5">
-  <div class="d-flex align-items-center justify-content-between mb-3">
-    <h3 class="mb-0">Bikes</h3>
-  </div>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Bike Type</th>
-          <th>$ Price</th>
-          <th>Location</th>
-          <th>Owner</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bikes.each do |bike| %>
-          <tr>
-            <td><%= link_to bike.name, bike_path(bike), class:"text-decoration-none" %></td>
-            <td><%= bike.bike_type %></td>
-            <td><%= bike.price  %></td>
-            <td><%= bike.location %></td>
-            <td><%= bike.user.last_name %></td>
-          </tr>
-        <% end %>
-        <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
-      </tbody>
-    </table>
-  </div>
+<div class="container">
+  <% if @bikes.present? %>
+    <div class="row mt-4">
+      <% @bikes.each do |bike| %>
+        <div class="col-md-4">
+          <%= link_to bike_path(bike), class: "text-decoration-none" do %>
+            <div class="card mb-4">
+            <% if bike.photo.attached? %>
+              <%= cl_image_tag bike.photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+              <% else %>
+              <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" alt="default bike picture">
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= bike.bike_type %></h5>
+                <p class="card-text">
+                  Price: <%= bike.price %><br>
+                  Location: <%= bike.location %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="mt-4">No bikes found matching your search criteria.</p>
+  <% end %>
+  <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
 </div>
