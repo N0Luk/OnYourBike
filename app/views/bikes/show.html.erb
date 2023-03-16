@@ -1,11 +1,26 @@
 <div class="container py-5">
-  <div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="d-flex align-items-center justify-content-between mb-3" >
     <h3 class="mb-0"><%= @bike.name %></h3>
+
     <div>
       <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
       <%= link_to "Delete", bike_path(@bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+      <% if @booking && @booking.pending? && @booking.user == current_user %>
+        <%= link_to "Cancel Request", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+      <% end %>
+      <% if @booking && @booking.pending? && @booking.bike.user == current_user %>
+        <%= link_to "Accept", accept_booking_path(@booking), method: :put, class: "btn btn-success me-2" %>
+        <%= link_to "Reject", reject_booking_path(@booking), method: :put, class: "btn btn-danger me-2" %>
+      <% end %>
       <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary" %>
     </div>
+
+
+    <%# <div>
+      <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary me-2" %>
+      <%# <%= link_to "Delete", bike_path(@bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger me-2" %>
+      <%# <%= link_to "Reserve Bike", new_bike_booking_path(@bike), class: "btn btn-primary" %>
+    <%# </div> %>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -24,7 +39,7 @@
 
         <dt class="col-sm-4"><strong>User:</strong></dt>
         <dd class="col-sm-8"><%= @bike.user.first_name %></dd>
-      </dl>
+        </dl>
     </div>
   </div>
   <div class="mt-4">
