@@ -1,18 +1,24 @@
+<div class="banner"style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.istockphoto.com/id/899711582/photo/cyclist-drives-on-the-bike-path-past-the-traffic-jam.jpg?s=612x612&w=0&k=20&c=MVQQ1WLzGSkhembIB9p59fcQ1f9FLuw-b67biXtWaVI=);">
+
+
+<div class=main-stuff>
+<div class=home-title>
+<h1>OnYourBike</h1>
+</div>
 <div class="jumbotron text-center">
-  <h1>OnYourBike</h1>
+
   <h2>Your ride, your way.</h2>
   <p>Welcome to OnYourBike, the ultimate bike rental app for adventurers and explorers like you. Our mission is to help you discover the world on two wheels and experience the freedom and flexibility of biking like a local.</p>
   <p>With OnYourBike, you can rent a bike from locals and bike rental shops in your city, and explore your surroundings at your own pace. Whether you want to take a leisurely ride along the beach, explore hidden alleys and neighborhoods, or tackle a challenging trail, you can find the perfect bike and route for your adventure.</p>
-  <p>No matter where you are, you can easily book your ride, unlock your bike, and hit the road in minutes. And with our user-friendly app and 24/7 customer support, you can rest assured that your ride will be smooth and hassle-free.</p>
-  <%= link_to "Download OnYourBike", "#", class: "btn btn-primary me-2" %>
-  <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
-  <%= link_to "See All Our Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>
+  <%# <%= link_to "Add a New Bike", new_bike_path(@bike), class: "btn btn-primary me-2" %>
+  <%#= link_to "See All Our Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>
+   <%= link_to "Rent Your Bike", new_bike_path(@bike), class: "btn btn-lg btn-primary"  %>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h3 class="my-4">Search Bikes</h3>
+      <h3 class="my-4">Get Your Bike</h3>
       <%= form_with url: bikes_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -23,4 +29,6 @@
       <% end %>
     </div>
   </div>
+</div>
+</div>
 </div>
