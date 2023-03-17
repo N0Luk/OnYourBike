@@ -23,7 +23,55 @@
     <div class="jumbotron text-center">
       <p>Welcome to OnYourBike, the ultimate bike rental app for adventurers and explorers like you. Our mission is to help you discover the world on two wheels and experience the freedom and flexibility of biking like a local.</p>
       <p>With OnYourBike, you can rent a bike from locals and bike rental shops in your city, and explore your surroundings at your own pace. Whether you want to take a leisurely ride along the beach, explore hidden alleys and neighborhoods, or tackle a challenging trail, you can find the perfect bike and route for your adventure.</p>
-      <%= link_to "Rent Your Bike", new_bike_path(@bike), class: "btn btn-lg btn-primary" %>
+      <%= link_to "Rent Out Your Bike", new_bike_path(@bike), class: "btn btn-lg btn-primary" %>
     </div>
+  </div>
+</div>
+<!-- code a "How it works" section -->
+<div class="container">
+  <h2 class="text-center how-it-works-heading"></h2>
+  <div class="home-cards">
+    <div class="home-card">
+      <img class="card-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/OOjs_UI_icon_search-ltr.svg/1200px-OOjs_UI_icon_search-ltr.svg.png" alt="">
+      <h4>Search</h4>
+      <p>You can look for bikes in places you are visiting.</p>
+      <p>Choose your favorite bike!</p>
+    </div>
+
+    <div class="home-card">
+      <img class="card-image" src="https://img.freepik.com/free-icon/bikes-sale-sign-dollars_318-51201.jpg" alt="">
+      <h4>Rent Out Your Bike</h4>
+      <p>Make money by renting your bike!</p>
+    </div>
+
+    <div class="home-card">
+      <img class="card-image" src="https://www.actsmart.biz/crm_files/retail_promo_images/logo%202017%20black%20on%20white-677992.jpg" alt="">
+      <h4>On Your Bike</h4>
+      <p>Enjoy the ride!</p>
+    </div>
+  </div>
+
+  <div class="home-cards mt-3">
+    <% @bikes.each do |bike| %>
+      <div class="home-card">
+        <%= link_to bike_path(bike), class: "text-decoration-none" do %>
+          <div class="card h-100">
+            <% if bike.photo.attached? %>
+              <%= cl_image_tag bike.photo.key, crop: :fill, class: "card-image" %>
+            <% else %>
+              <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80" alt="default bike picture" class="card-img-top">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= bike.name %></h5>
+              <p class="card-text">
+                Bike Type: <%= bike.bike_type %><br>
+                Price: $<%= bike.price %><br>
+                Location: <%= bike.location %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
