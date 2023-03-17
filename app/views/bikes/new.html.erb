@@ -1,17 +1,21 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded p-3 shadow">
-        <h3>Add a new bike</h3>
-        <%= simple_form_for @bike do |f| %>
-          <%= f.input :name %>
-          <%= f.input :bike_type %>
-          <%= f.input :price, as: :float %>
-          <%= f.input :location %>
-          <%= f.input :photo, as: :file %>
+    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <div class="bg-white rounded p-4 shadow">
+        <h3 class="mb-4">Add a new bike</h3>
+        <%= simple_form_for @bike, wrapper: :vertical_form, html: {class: 'form'} do |f| %>
+          <fieldset>
+            <%= f.input :name %>
+            <%= f.input :bike_type %>
+            <%= f.input :price, as: :float %>
+            <%= f.input :location %>
+            <%= f.input :photo %>
+          </fieldset>
 
-          <%= f.submit class: 'btn btn-primary me-2s' %>
-          <%= link_to "Return to Bikes", bikes_path(@bike), class: "btn btn-primary me-2" %>
+          <div class="d-flex justify-content-between mt-4">
+            <%= f.submit "Add Bike", class: 'btn btn-primary' %>
+            <%= link_to "Return to Bikes", bikes_path(@bike), class: "btn btn-secondary" %>
+          </div>
         <% end %>
       </div>
     </div>

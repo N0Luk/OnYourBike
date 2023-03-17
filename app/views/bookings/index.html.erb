@@ -1,75 +1,79 @@
-<h1>Bookings</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<table>
-  <thead>
-    <tr>
-      <th>Bike</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>User</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-    <% if booking.user == current_user%>
-      <tr>
-        <td><%= booking.bike.name %></td>
-        <td><%= booking.user.first_name %></td>
-        <td><%= booking.user.last_name %></td>
-        <td><%= booking.user.email %></td>
-        <td><%= booking.start_date.strftime('%Y-%m-%d') %></td>
-        <td><%= booking.end_date.strftime('%Y-%m-%d') %></td>
-        <td>
-          <%= link_to 'Edit', edit_booking_path(booking)%>
-        </td>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<table>
-  <thead>
-    <tr>
-      <th>Bike</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>User</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-    </tr>
-  </thead>
-  <tbody>
-<% if current_user %>
-      <% current_user.bikes.each do |bike| %>
-        <% bike.bookings.each do |booking| %>
+<div class="container mt-5">
+  <h1 class="mb-4">Bookings</h1>
+  <h3>Your Bookings</h3>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
         <tr>
-        <td><%= booking.bike.name %></td>
-        <td><%= booking.user.first_name %></td>
-        <td><%= booking.user.last_name %></td>
-        <td><%= booking.user.email %></td>
-        <td><%= booking.start_date.strftime('%Y-%m-%d') %></td>
-        <td><%= booking.end_date.strftime('%Y-%m-%d') %></td>
-        <td><%= booking.status%></td>
-        <% if booking.status == "pending" %>
-          <td><%= link_to "Accept", booking_accept_path(booking), method: :put, class: "btn btn-success me-2" %></td>
-          <td><%= link_to "Reject", booking_reject_path(booking), method: :put, class: "btn btn-danger me-2"  %></td>
-        <% end %>
-
-
-
-
-
-
-        <%# <td><%= link_to "Accept", booking_accept_path(booking), method: :put, class: "btn btn-success me-2" %></td>
-        <%# <td><%= link_to "Reject", booking_reject_path(booking), method: :put, class: "btn btn-danger me-2"  %></td>
+          <th>Bike</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>User</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Action</th>
         </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+        <% if booking.user == current_user%>
+          <tr>
+            <td><%= booking.bike.name %></td>
+            <td><%= booking.user.first_name %></td>
+            <td><%= booking.user.last_name %></td>
+            <td><%= booking.user.email %></td>
+            <td><%= booking.start_date.strftime('%Y-%m-%d') %></td>
+            <td><%= booking.end_date.strftime('%Y-%m-%d') %></td>
+            <td>
+              <%= link_to 'Edit', edit_booking_path(booking), class: 'btn btn-primary' %>
+            </td>
+          </tr>
         <% end %>
-      <% end %>
-    <% end %>
- </tbody>
-</table>
-<br>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="mt-5">Received Bookings</h3>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Bike</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>User</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if current_user %>
+        <% current_user.bikes.each do |bike| %>
+          <% bike.bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.bike.name %></td>
+            <td><%= booking.user.first_name %></td>
+            <td><%= booking.user.last_name %></td>
+            <td><%= booking.user.email %></td>
+            <td><%= booking.start_date.strftime('%Y-%m-%d') %></td>
+            <td><%= booking.end_date.strftime('%Y-%m-%d') %></td>
+            <td><%= booking.status %></td>
+            <% if booking.status == "pending" %>
+              <td>
+                <%= link_to "Accept", booking_accept_path(booking), method: :put, class: "btn btn-success me-2" %>
+                <%= link_to "Reject", booking_reject_path(booking), method: :put, class: "btn btn-danger me-2" %>
+              </td>
+            <% end %>
+          </tr>
+          <% end %>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
